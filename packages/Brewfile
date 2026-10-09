@@ -33,4 +33,4 @@ brew "openjdk"        # Java
 cask "dotnet-sdk"     # C#
 
 # ── Apps & fonts ──
-cask "wezterm"
+cask "wezterm@nightly"
