@@ -1,0 +1,37 @@
+# macOS (Apple Silicon) packages. Installed by install.sh with:  brew bundle --file=packages/Brewfile
+
+# ── Dotfile tooling ──
+brew "git"
+brew "stow"
+brew "wget"
+
+# ── Terminal workflow ──
+brew "tmux"
+brew "neovim"
+brew "ripgrep"
+brew "fd"
+brew "fzf"
+brew "bat"
+brew "eza"
+brew "zoxide"
+brew "starship"
+brew "jq"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+
+# ── Neovim support ──
+brew "tree-sitter-cli"
+brew "shellcheck"
+brew "shfmt"
+
+# ── Languages ──
+brew "cmake"          # C / C++ (Apple clang comes with the Xcode command line tools)
+brew "python"
+brew "uv"
+brew "node"           # JavaScript, and required by several language servers
+brew "openjdk"        # Java
+cask "dotnet-sdk"     # C#
+
+# ── Apps & fonts ──
+cask "wezterm@nightly"      # nightly = same build as the Fedora COPR, so options match
+cask "font-maple-mono-nf"

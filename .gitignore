@@ -1,0 +1,11 @@
+.DS_Store
+
+# TPM clones plugins here (through the stow symlink) — never commit them
+tmux/.config/tmux/plugins/
+
+# Local-only files
+*.local
+.dotfiles-backup/
+
+# bat theme is downloaded by install.sh
+bat/.config/bat/themes/

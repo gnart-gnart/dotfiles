@@ -1,0 +1,44 @@
+# ~/.gitconfig — shared settings. Name, email and credential helper live in
+# ~/.gitconfig.local (created by install.sh, never committed).
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+	autocrlf = input
+	pager = less -FRX
+
+[pull]
+	ff = only
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[fetch]
+	prune = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[rebase]
+	autoStash = true
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[color]
+	ui = auto
+
+[alias]
+	st = status -sb
+	sw = switch
+	br = branch
+	lg = log --oneline --graph --decorate -20
+	last = log -1 --stat
+	unstage = restore --staged
+
+[include]
+	path = ~/.gitconfig.local

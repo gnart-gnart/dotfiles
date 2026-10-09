@@ -1,0 +1,5 @@
+# ~/.config/bat/config
+# The Tokyo Night theme file is downloaded by install.sh (see README).
+--theme="tokyonight_night"
+--style="numbers,changes"
+--italic-text=always

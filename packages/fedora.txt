@@ -1,0 +1,57 @@
+# Fedora packages, installed by install.sh with:
+#   sudo dnf install -y --setopt=strict=0 <these>
+# (strict=0 means a package that doesn't exist on your Fedora release is skipped instead of aborting)
+
+# ── Dotfile tooling ──
+git
+stow
+zsh
+util-linux-user          # provides chsh
+curl
+wget
+unzip
+fontconfig
+
+# ── Terminal workflow ──
+tmux
+neovim
+ripgrep
+fd-find
+fzf
+bat
+eza
+zoxide
+starship
+jq
+wl-clipboard             # clipboard on Wayland (KDE Plasma default)
+xclip                    # clipboard on X11
+zsh-autosuggestions
+zsh-syntax-highlighting
+
+# ── Neovim support ──
+tree-sitter-cli          # needed by nvim-treesitter on Neovim 0.12+
+shellcheck
+shfmt
+
+# ── Languages: C / C++ ──
+gcc
+gcc-c++
+make
+cmake
+gdb
+
+# ── Languages: Python ──
+python3
+python3-pip
+uv
+
+# ── Languages: JavaScript (also required by several language servers) ──
+nodejs
+npm
+
+# ── Languages: Java ──
+java-latest-openjdk-devel
+
+# ── Languages: C# ──
+dotnet-sdk-9.0
+dotnet-sdk-10.0

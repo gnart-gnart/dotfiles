@@ -1,0 +1,76 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Minimal two-line prompt, Tokyo Night colors.
+add_newline = true
+command_timeout = 500
+palette = "tokyonight"
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$c\
+$java\
+$dotnet\
+$cmd_duration
+$character"""
+
+[palettes.tokyonight]
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+purple = "#bb9af7"
+cyan = "#7dcfff"
+comment = "#565f89"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = ""
+style = "purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "yellow"
+format = '([$all_status$ahead_behind]($style) )'
+
+[cmd_duration]
+min_time = 2000
+style = "comment"
+format = "[took $duration]($style) "
+
+# Language modules: text labels only, so nothing depends on glyph support.
+[python]
+symbol = "py "
+style = "yellow"
+format = '[$symbol($version )(\($virtualenv\) )]($style)'
+
+[nodejs]
+symbol = "node "
+style = "green"
+format = "[$symbol($version )]($style)"
+
+[c]
+symbol = "c "
+style = "blue"
+format = "[$symbol($version(-$name) )]($style)"
+
+[java]
+symbol = "java "
+style = "red"
+format = "[$symbol($version )]($style)"
+
+[dotnet]
+symbol = ".net "
+style = "purple"
+format = "[$symbol($version )]($style)"
