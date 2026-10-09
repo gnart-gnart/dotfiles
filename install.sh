@@ -45,21 +45,40 @@ install_packages_fedora() {
   fi
 }
 
-install_font_linux() {
-  if fc-list 2>/dev/null | grep -qi "Maple Mono NF"; then
-    say "Maple Mono NF already installed"
-    return 0
-  fi
-  say "Installing Maple Mono NF into ~/.local/share/fonts"
-  local tmp dest="$HOME/.local/share/fonts/MapleMono-NF"
-  tmp="$(mktemp -d)"
-  curl -fsSL -o "$tmp/maple.zip" \
-    "https://github.com/subframe7536/maple-font/releases/latest/download/MapleMono-NF-unhinted.zip" \
-    || { warn "Font download failed; install Maple Mono NF manually."; rm -rf "$tmp"; return 0; }
-  mkdir -p "$dest"
-  unzip -oq "$tmp/maple.zip" -d "$dest"
-  rm -rf "$tmp"
-  fc-cache -f
+# ── Font: Maple Mono ───────────────────────────────────────────────────
+# macOS uses the Homebrew cask. Fedora has no package for it, so Linux downloads
+# the same variable-font release from GitHub (with timeouts so it can't hang).
+# Both end up as the plain "Maple Mono" family; WezTerm supplies the icon glyphs.
+install_font() {
+  case "$OS" in
+    Darwin)
+      if brew list --cask font-maple-mono >/dev/null 2>&1; then
+        say "Maple Mono already installed"
+        return 0
+      fi
+      say "Installing Maple Mono (brew cask)"
+      brew install --cask font-maple-mono \
+        || warn "Maple Mono install failed. Run manually: brew install --cask font-maple-mono"
+      ;;
+    Linux)
+      if fc-list 2>/dev/null | grep -qi "Maple Mono"; then
+        say "Maple Mono already installed"
+        return 0
+      fi
+      say "Installing Maple Mono into ~/.local/share/fonts"
+      local tmp dest="$HOME/.local/share/fonts/MapleMono"
+      tmp="$(mktemp -d)"
+      if curl -fsSL --connect-timeout 15 --max-time 180 -o "$tmp/maple.zip" \
+           "https://github.com/subframe7536/maple-font/releases/latest/download/MapleMono-Variable.zip" \
+         && mkdir -p "$dest" \
+         && unzip -oq "$tmp/maple.zip" -d "$dest"; then
+        fc-cache -f
+      else
+        warn "Font download failed; get MapleMono-Variable.zip from github.com/subframe7536/maple-font/releases and unzip it into $dest"
+      fi
+      rm -rf "$tmp"
+      ;;
+  esac
 }
 
 # ── Linking ────────────────────────────────────────────────────────────
@@ -158,12 +177,12 @@ main() {
         else
           warn "Not Fedora: skipping package install. Install the tools listed in packages/fedora.txt yourself."
         fi
-        install_font_linux
         ;;
       *)
         die "Unsupported OS: $OS"
         ;;
     esac
+    install_font
   fi
 
   link_dotfiles

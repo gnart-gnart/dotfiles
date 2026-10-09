@@ -33,5 +33,4 @@ brew "openjdk"        # Java
 cask "dotnet-sdk"     # C#
 
 # ── Apps & fonts ──
-cask "wezterm@nightly"      # nightly = same build as the Fedora COPR, so options match
-cask "font-maple-mono-nf"
+cask "wezterm"
