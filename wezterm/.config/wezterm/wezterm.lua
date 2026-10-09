@@ -10,6 +10,7 @@ local is_linux = wezterm.target_triple:find("linux") ~= nil
 -- "Maple Mono NF" is the Nerd Font build (icons included). Falls back to
 -- JetBrains Mono if Maple isn't installed yet.
 config.font = wezterm.font_with_fallback({
+	"Maple Mono",
 	"Maple Mono NF",
 	"JetBrains Mono",
 })
